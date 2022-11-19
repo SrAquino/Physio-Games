@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
                     configCalibragem.porta.Write("2");
                     configCalibragem.porta.DiscardOutBuffer();
 
-                    // Debug.Log("Valor recebido: " + dadoNoSensor);
+                    Debug.Log("Valor recebido: " + dadoNoSensor);
                     // Debug.Log("Tamanho: " + dadoNoSensor.Length);
 
                     //verifica se não houve um erro de leitura do buffer e leu vazio
