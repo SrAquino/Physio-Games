@@ -16,12 +16,12 @@ public class PlayerDemo : MonoBehaviour
     * @param 
     **/
 
-    int start = 0;
+    //int start = 0;
     
     void Start()
     {
         transform.position = new Vector3(43.04f, -12.91f, 0.0f);
-        start = 1;
+        //start = 1;
         if(configCalibragem.porta.IsOpen){
             try{
                 configCalibragem.porta.Write("2");
