@@ -22,9 +22,9 @@ public class Bottun_IniciarPartida : MonoBehaviour
         string nome = jogos.options[index].text;
 
         if( String.Equals(nome,"Tennis Physio") ){
-            UnityEngine.SceneManagement.SceneManager.LoadScene("sceneJogo");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Calibragem_Tennis");
         } else if (String.Equals(nome,"Galaxy Shooter")){
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Jogo2_GalaxyShooter");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Calibragem_GalaxyShooter");
         }
         
     }
