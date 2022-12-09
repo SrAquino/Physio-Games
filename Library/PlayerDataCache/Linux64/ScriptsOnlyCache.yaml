@@ -1740,5 +1740,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/sceneGraficoDesempenho.unity
   - Assets/Scenes/sceneFimPartida.unity
   - Assets/Scenes/sceneAcessoHistSair.unity
-  playerPath: C:/Users/Minas/Documents/Meus Projetos/Executaveis/TennisGame_LinuxV1/Tennis
-    game v1.x86_64
+  playerPath: C:/Users/dougl/Documents/Meus Projetos/Unity/Builds/TennisPhysio_LINUX.x86_64
