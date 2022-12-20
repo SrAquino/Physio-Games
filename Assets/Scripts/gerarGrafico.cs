@@ -38,7 +38,7 @@ public class gerarGrafico : MonoBehaviour
     private void Awake(){
 
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "sceneGraficos"){
-            int controleColeta = 0;
+            //int controleColeta = 0;
 
             List<string> listaDados = new List<string>();
 
@@ -85,7 +85,7 @@ public class gerarGrafico : MonoBehaviour
             //Usando a lista criada de efetividade 
             ShowGraph(listaDados);
         }else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "sceneGraficoDesempenho"){
-            int controleColeta = 0;
+            //int controleColeta = 0;
 
             List<string> listaDados = new List<string>();
 
