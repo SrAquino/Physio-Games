@@ -1740,5 +1740,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/sceneGraficoDesempenho.unity
   - Assets/Scenes/sceneFimPartida.unity
   - Assets/Scenes/sceneAcessoHistSair.unity
-  playerPath: C:/Users/dougl/Documents/Meus Projetos/Unity/Builds/TennisPhysio_Windows/tennis
+  playerPath: C:/Users/Minas/Documents/Meus Projetos/Executaveis/TennisGame_WindowsV1/tennis
     game.exe

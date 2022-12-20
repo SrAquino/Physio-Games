@@ -7,7 +7,8 @@ using System.Globalization;
 // using System.IO;
 // using System;
 
-public class Player : MonoBehaviour{
+public class Player : MonoBehaviour
+{
     public Transform aimTarget; //alvo para onde a bolinha será lançada para o lado do bot
     
     float speed = 15f; //velocidade da raquete que será multiplicada pela posição - 15 - 0.125f - 0.5f
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour{
 
     //função para tratar colisões com a raquete -> bola + raquete 
     private void OnCollisionEnter(Collision other){
+    //private void OnTriggerEnter(Collider other) {
         //verifica se a colisão foi com a bola
         if(other.gameObject.CompareTag("Ball")){
             Vector3 dir;
@@ -218,4 +220,18 @@ public class Player : MonoBehaviour{
             // Ball.numRebates++;
         }
     }
+
+    
+    //seta posição quando erra jogada
+    // public void Reset(){
+    //     if(servedRight){
+    //         transform.position = serveLeft.position;
+    //     }else{
+    //         transform.position = serveRight.position;
+    //     }
+
+    //     servedRight = !servedRight;
+
+    // }
+
 }
