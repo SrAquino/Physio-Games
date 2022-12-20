@@ -65,7 +65,7 @@ public class listaPacientes : MonoBehaviour
             dadosJogo.Salvar(escrita);
             coletaDadosFisicos.opcao = 1;
             controleTrocaCenas.entradaCena = 0;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("sceneProximaAcao");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("sceneColetaDadosFisicos");
         }else{
             msgErro.SetActive(true);
         }

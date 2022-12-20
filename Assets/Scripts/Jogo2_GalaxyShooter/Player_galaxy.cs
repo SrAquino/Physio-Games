@@ -5,8 +5,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Globalization;
 
-public class Player_galaxy : MonoBehaviour
-{
+public class Player_galaxy : MonoBehaviour{
     //public Transform aimTarget; //alvo para onde a bolinha será lançada para o lado do bot
     
     float speed = 15f; //velocidade da raquete que será multiplicada pela posição - 15 - 0.125f - 0.5f
@@ -33,13 +32,13 @@ public class Player_galaxy : MonoBehaviour
    
     void Start()
     {
-        //playerRb = this.GetComponent<Rigidbody>();
-        //aimTargetPosition = aimTarget.position;
+        // playerRb = this.GetComponent<Rigidbody>();
+        // aimTargetPosition = aimTarget.position;
         // porta = new SerialPort("/dev/ttyACM0", 115200);
         // porta.Open();
         // porta.ReadTimeout = -1; //InfiniteTimeout = -1
         // porta.DiscardInBuffer();
-        transform.position = new Vector3(43.04f, -12.91f, 0.0f);
+        transform.position = new Vector3(0.0f, -3.0f, 0.0f);
         numAcertos = -1;
     }
 
@@ -51,8 +50,8 @@ public class Player_galaxy : MonoBehaviour
         if(configCalibragem.porta.IsOpen){
             try{
                  if(configCalibragem.porta.BytesToRead == 0){ //Não está sendo recebido dados no buffer
-                     //Debug.Log(porta.BytesToRead);
-                    //   Debug.Log("Sem recebimento de dados B!");
+                    //Debug.Log(porta.BytesToRead);
+                    Debug.Log("Sem recebimento de dados B!");
                  }else{
                     //Trecho comentado que funciona apenas quando enviado APENAS UM BYTE
                     // int dadoNoSensor = configCalibragem.porta.ReadByte();

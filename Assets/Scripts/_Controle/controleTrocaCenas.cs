@@ -22,7 +22,7 @@ public class controleTrocaCenas : MonoBehaviour
         }else if(encaminhar == 1 && coletaDadosFisicos.opcao == 2){
             UnityEngine.SceneManagement.SceneManager.LoadScene("sceneAcessoHistSair");
         }else if(encaminhar == 1 && coletaDadosFisicos.opcao == 1){
-            UnityEngine.SceneManagement.SceneManager.LoadScene("sceneConfigPartida");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("sceneProximaAcao");
         }
     }
 
