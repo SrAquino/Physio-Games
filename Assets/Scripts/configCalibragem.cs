@@ -74,7 +74,7 @@ public class configCalibragem : MonoBehaviour
                 //Debug.Log(porta.BytesToRead);
                 if(porta.BytesToRead == 0){ //Não está sendo recebido dados no buffer
                     //Debug.Log(porta.BytesToRead);
-                    //  Debug.Log("Sem recebimento de dados A!");
+                    Debug.Log("Sem recebimento de dados A!");
                 }else{ //Iniciou o recebimento de dados no buffer
                     // Debug.Log("Entrada recebida!");
                     int lePorta = porta.ReadByte();

@@ -17,6 +17,8 @@ TagManager:
   - outPlayerDir
   - outPlayerEsq
   - OutPlayer
+  - Enemy
+  - Laser
   layers:
   - Default
   - TransparentFX

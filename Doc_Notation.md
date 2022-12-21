@@ -3,7 +3,9 @@
 > Dica: Verificar a ESCALA (Scale)  : Se tiver diferente de 1, a fonte pode estar no tamanho certo, porém ficar menor ou maior que a fonte selecionada;<br><br>
 > Dica: Verificar o Pivot (Anchors) : Se tiver diferente de 0,5, a referencia para posicionar na tela fica diferente. (Então por exemplo. X : 0 não é o no inicio da tela ) <br><br>
 > Dica: Se um objeto está ficando POR BAIXO de outro MESMO que ele seja um filho (O que deveria automáticamente colocar por cima), verifique os 'Z' da posição de cada objeto, provavelmente um está diferente do outro: **Mantenha os 'Z' em 0**<br><br>
-> Dica: Se ainda está com problema de sobreposição, não esquece que a ordem dos objetos lsitados, importa. Tente trocar a ordem deles na lista. <br><br> 
+> Dica: Se ainda está com problema de sobreposição, não esquece que a ordem dos objetos lsitados, importa. Tente trocar a ordem deles na lista. <br><br>
+> Dica: Não esqueça de dar APLY após mudar coisas nos prefabs, se não ele não salva as alterações que vc fez<br><br>
+> Lembrete: NADA QUE É FEITO DURANTE A EXECUÇÃO DO JOGO É SALVO, nunca se esqueça de pausar a execução antes de começar a arrumar algo na cena, pode ser realmente frustrante perder tudo que vc arrumou só pq o jogo ta rodando! 
 
 > ## Ordem das cenas
 > 1. _Inicial 

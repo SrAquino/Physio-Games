@@ -8,7 +8,21 @@ using System.Globalization;
 public class Player_galaxy : MonoBehaviour{
     //public Transform aimTarget; //alvo para onde a bolinha será lançada para o lado do bot
     
-    float speed = 15f; //velocidade da raquete que será multiplicada pela posição - 15 - 0.125f - 0.5f
+    float speed = 15f;      //velocidade de movimentação do player
+
+    public float fireRate = 0.7f;
+    public float canFire = 0.0f;
+
+    public bool powerShoot = false;
+    public bool powerSpeed = false;
+    public bool powerShield = false;
+
+    private int Life = 3;
+
+    [SerializeField]// Variavel privada mas pode ser modificada no unity
+    private GameObject NormalLaser;
+    
+
     //float force = 30; //15
     bool hitting;
 
@@ -21,12 +35,10 @@ public class Player_galaxy : MonoBehaviour{
     public Transform[] targets;
 
     //Comunicação serial
-    // SerialPort porta;
+    //SerialPort porta;
 
     public static bool flagDificuldade;
-
     public static int numAcertos;
-
     float deslocamentoAnterior = -1.0f;
 
    
@@ -45,18 +57,22 @@ public class Player_galaxy : MonoBehaviour{
     // void FixedUpdate()
     void Update()
     {
+            
+        movimentaUsandoTeclado();
+        Shooting();
+    }
 
-
+    void movimentaUsandoCelular(){
         if(configCalibragem.porta.IsOpen){
             try{
-                 if(configCalibragem.porta.BytesToRead == 0){ //Não está sendo recebido dados no buffer
+                if(configCalibragem.porta.BytesToRead == 0){ //Não está sendo recebido dados no buffer
                     //Debug.Log(porta.BytesToRead);
                     Debug.Log("Sem recebimento de dados B!");
                  }else{
                     //Trecho comentado que funciona apenas quando enviado APENAS UM BYTE
-                    // int dadoNoSensor = configCalibragem.porta.ReadByte();
-                    // configCalibragem.porta.DiscardInBuffer();
-                    // configCalibragem.porta.Write("2");
+                    //int dadoNoSensor = configCalibragem.porta.ReadByte();
+                    //configCalibragem.porta.DiscardInBuffer();
+                    //configCalibragem.porta.Write("2");
                     //Trecho de código para coletar o que é recebido pela Unity quando é solicitado valores de movimento
                     string dadoNoSensor = configCalibragem.porta.ReadTo("\n");
                     configCalibragem.porta.DiscardInBuffer();
@@ -64,8 +80,8 @@ public class Player_galaxy : MonoBehaviour{
                     configCalibragem.porta.Write("2");
                     configCalibragem.porta.DiscardOutBuffer();
 
-                    // Debug.Log("Valor recebido: " + dadoNoSensor);
-                    // Debug.Log("Tamanho: " + dadoNoSensor.Length);
+                    //Debug.Log("Valor recebido: " + dadoNoSensor);
+                    //Debug.Log("Tamanho: " + dadoNoSensor.Length);
 
                     //verifica se não houve um erro de leitura do buffer e leu vazio
                     if(dadoNoSensor != "" && (dadoNoSensor.Length == 4 || dadoNoSensor.Length == 7)){
@@ -86,13 +102,13 @@ public class Player_galaxy : MonoBehaviour{
                             }
                         }
                         
-                        // moveAvatar(direcao, posicao);
+                        //moveAvatar(direcao, posicao);
 
                         float z = transform.position.z;
-                        // Debug.Log("Posição atual do avatar em z é igual a: " + z);
+                        //Debug.Log("Posição atual do avatar em z é igual a: " + z);
                         
                         if(deslocamentoAnterior == posicao){
-                            // Debug.Log("Valor repetido recebido!");
+                            //Debug.Log("Valor repetido recebido!");
                         }else{
 
                             float deslocamento = 0.0f;
@@ -138,43 +154,96 @@ public class Player_galaxy : MonoBehaviour{
                                 // transform.position += new Vector3(0, 0, 0);
                             }
                         }
-
                     }
-                
-                 }
-             }catch(System.Exception){
-                 throw;
-             }
-         }    
-        // movimentaUsandoTeclado();
+                }
+            }catch(System.Exception){
+                throw;
+            }
+        }
     }
 
     //função para mover o avatar usando como entrada de dados o teclado
     void movimentaUsandoTeclado(){
-        
-        //capturar posição se pra frente, pra trás, pra direita ou pra esquerda
-        float h = Input.GetAxisRaw("Horizontal"); //direita = 1 esquerda = -1
-        float v = Input.GetAxisRaw("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");//Recebe dado do teclado Setas ou A e D
+        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
 
-        if(h != 0 || v != 0){ //movimenta avatar
-            //time.deltatime evita alta taxa de atualização de quadros
-            // transform.Translate(new Vector3(h, 0, v) * speed * Time.deltaTime); //se não colocar uma velocidade o movimento do player é muito rapidamente
-            // playerRb.velocity = new Vector3(0, 0, h) * speed;
-            // Debug.Log(Time.deltaTime);
-            if(h == 1f){ //direita
-                // Debug.Log("Posição Atual D = ");
-                // Debug.Log(transform.position.z);
-                transform.position += new Vector3(0, 0, 1 * speed * Time.deltaTime); //Time.deltatime = fazer o movimento c/ velocidade constante - retorna 0.02
-                // Debug.Log("Posição Depois D = ");
-                // Debug.Log(transform.position.z);
-            }else{ //esquerda
-                // Debug.Log("Posição Atual E = ");
-                // Debug.Log(transform.position.z);
-                transform.position += new Vector3(0, 0, -1 * speed * Time.deltaTime);
-                // Debug.Log("Posição Depois E = ");
-                // Debug.Log(transform.position.z);
+        //Limita o player a se movimentar entre -7,5 e 7,5
+        if(transform.position.x > 7.5){
+            transform.position = new Vector3(7.5f, transform.position.y, 0);
+        }
+        if(transform.position.x < -7.5){
+            transform.position = new Vector3(-7.5f, transform.position.y, 0);
+        }//Fim limitador do player
+
+        //Aumenta a velocidade quando coletar um powerup
+        if (powerSpeed){
+            transform.Translate(Vector3.right * Time.deltaTime * (speed*2) * horizontalInput);
+        }
+
+    }
+
+        private void Shooting(){
+        if(Time.time > canFire){
+
+            if (powerShoot){
+                 Instantiate(NormalLaser, transform.position + new Vector3(-0.55f,0,0), Quaternion.identity);
+                 Instantiate(NormalLaser, transform.position + new Vector3(0.55f,0,0), Quaternion.identity);
+                 
             }
+            // Input.GetKeyDown(KeyCode.Space)
+            // Sempre que apertar espaço um novo objeto é instanciado
+            //          (O objeto, O local, );
+                Instantiate(NormalLaser, transform.position + new Vector3(0,0.3f,0), Quaternion.identity);
+            //          (Marco quem é o objeto a ser instanciado la no unity)
+            //          (transform.position retorna a posição atual do player)
+            //          (Quaternion = )
+
+                canFire = fireRate + Time.time;
+                //Atira denovo depois do tempo de cooldown
         }
     }
+
+    public void Damage(){
+        Life--;
+        if(Life == 0){
+            Destroy(this.gameObject);
+        }
+    }
+
+     public void powerUpOn(string power){
+        switch(power){
+            case "triple":
+                powerShoot = true;
+                StartCoroutine(PowerDownRotine("triple"));
+            break;
+
+            case "speed":
+                powerSpeed = true;
+                StartCoroutine(PowerDownRotine("speed"));
+            break;
+
+            case "shield":
+                powerShield = true;
+                StartCoroutine(PowerDownRotine("shield"));
+            break;
+        }
+    }
+    IEnumerator PowerDownRotine(string power){
+        yield return new WaitForSeconds(5.0f);
+
+        switch(power){
+            case "triple":
+                powerShoot = false;
+            break;
+
+            case "speed":
+                powerSpeed = false;
+            break;
+
+            case "shield":
+                powerShield = false;
+            break;
+        }
+    } 
 
 }
