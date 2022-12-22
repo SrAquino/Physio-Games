@@ -17,10 +17,16 @@ public class Player_galaxy : MonoBehaviour{
     public bool powerSpeed = false;
     public bool powerShield = false;
 
-    private int Life = 3;
+    private int Life = 1;
 
     [SerializeField]// Variavel privada mas pode ser modificada no unity
     private GameObject NormalLaser;
+
+    [SerializeField]
+    private GameObject ExplosionPrefab;
+    
+    [SerializeField]
+    private GameObject ShieldGameObject;
     
 
     //float force = 30; //15
@@ -44,22 +50,22 @@ public class Player_galaxy : MonoBehaviour{
    
     void Start()
     {
-        // playerRb = this.GetComponent<Rigidbody>();
-        // aimTargetPosition = aimTarget.position;
-        // porta = new SerialPort("/dev/ttyACM0", 115200);
-        // porta.Open();
-        // porta.ReadTimeout = -1; //InfiniteTimeout = -1
-        // porta.DiscardInBuffer();
-        transform.position = new Vector3(0.0f, -3.0f, 0.0f);
+        transform.position = new Vector3(0.0f, -3.0f, 0.0f);    //Inicia a posição do player
         numAcertos = -1;
     }
 
     // void FixedUpdate()
     void Update()
     {
-            
-        movimentaUsandoTeclado();
+        //Movimentação
+        movimentaUsandoTeclado();   //Para desenvolvimento inicial e testes
+        //movimentaUsandoCelular();   
+
+        //Tiros
         Shooting();
+
+        //Dano e Morte
+
     }
 
     void movimentaUsandoCelular(){
@@ -67,12 +73,15 @@ public class Player_galaxy : MonoBehaviour{
             try{
                 if(configCalibragem.porta.BytesToRead == 0){ //Não está sendo recebido dados no buffer
                     //Debug.Log(porta.BytesToRead);
-                    Debug.Log("Sem recebimento de dados B!");
+                    //Debug.Log("Sem recebimento de dados B!");
                  }else{
                     //Trecho comentado que funciona apenas quando enviado APENAS UM BYTE
                     //int dadoNoSensor = configCalibragem.porta.ReadByte();
                     //configCalibragem.porta.DiscardInBuffer();
                     //configCalibragem.porta.Write("2");
+
+                    Debug.Log("Recebimento de dados B!");
+
                     //Trecho de código para coletar o que é recebido pela Unity quando é solicitado valores de movimento
                     string dadoNoSensor = configCalibragem.porta.ReadTo("\n");
                     configCalibragem.porta.DiscardInBuffer();
@@ -204,9 +213,18 @@ public class Player_galaxy : MonoBehaviour{
     }
 
     public void Damage(){
+
+        if(powerShield == true){
+            //Debug.Log("Colidiu com escudo ativado!");
+            powerShield = false;    //Desativa o escudo
+            ShieldGameObject.SetActive(false);
+        return;
+        } 
+
         Life--;
         if(Life == 0){
             Destroy(this.gameObject);
+            Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
         }
     }
 
@@ -224,6 +242,7 @@ public class Player_galaxy : MonoBehaviour{
 
             case "shield":
                 powerShield = true;
+                ShieldGameObject.SetActive(true);
                 StartCoroutine(PowerDownRotine("shield"));
             break;
         }
@@ -241,7 +260,7 @@ public class Player_galaxy : MonoBehaviour{
             break;
 
             case "shield":
-                powerShield = false;
+                //powerShield = false;
             break;
         }
     } 

@@ -22,10 +22,8 @@ public class configPartida_jogo2 : MonoBehaviour
         modoConfiguracao.SetActive(true);
         modoTempo.SetActive(false);
         modoNiveis.SetActive(false);
-        controllGame.modalidadeJogo = -1;
-        Ball.playerScore = 0;
-        Ball.botScore = 0;
-        controllGame.tempoDecorrido = 0.0f;
+        controllGame2.modalidadeJogo = -1;
+        controllGame2.tempoDecorrido = 0.0f;
     }
 
     public void renderizaPaineisTela(int opcao){
@@ -42,13 +40,13 @@ public class configPartida_jogo2 : MonoBehaviour
     public void configuracaoTempo(){
         string tempoLeitura = inputTempo.GetComponent<Text>().text;
         tempo = int.Parse(tempoLeitura);
-        controllGame.modalidadeJogo = 1;
+        controllGame2.modalidadeJogo = 1;
         carregaCena();
     }
 
     //função para conf. qual o nivel da partida
     public void configuracaoNiveis(int modalidade){
-        controllGame.modalidadeJogo = modalidade;
+        controllGame2.modalidadeJogo = modalidade;
         carregaCena();
     }
 

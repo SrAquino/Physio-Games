@@ -5,15 +5,17 @@
 > Dica: Se um objeto está ficando POR BAIXO de outro MESMO que ele seja um filho (O que deveria automáticamente colocar por cima), verifique os 'Z' da posição de cada objeto, provavelmente um está diferente do outro: **Mantenha os 'Z' em 0**<br><br>
 > Dica: Se ainda está com problema de sobreposição, não esquece que a ordem dos objetos lsitados, importa. Tente trocar a ordem deles na lista. <br><br>
 > Dica: Não esqueça de dar APLY após mudar coisas nos prefabs, se não ele não salva as alterações que vc fez<br><br>
-> Lembrete: NADA QUE É FEITO DURANTE A EXECUÇÃO DO JOGO É SALVO, nunca se esqueça de pausar a execução antes de começar a arrumar algo na cena, pode ser realmente frustrante perder tudo que vc arrumou só pq o jogo ta rodando! 
+> Lembrete: NADA QUE É FEITO DURANTE A EXECUÇÃO DO JOGO É SALVO, nunca se esqueça de pausar a execução antes de começar a arrumar algo na cena, pode ser realmente frustrante perder tudo que vc arrumou só pq o jogo ta rodando!<br><br> 
+> Bom Saber: Caso o objeto esteja invisivel, e aparece ao decorrer da cena: dentro de algum script deve ter um setActive(true/false)
+> ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/setActive.png)
 
 > ## Ordem das cenas
 > 1. _Inicial 
-> 2. SceneLoginFisioterapeuta {Login | Cadastras}
-> 3. 
+> 1. SceneLoginFisioterapeuta {Login | Cadastras}
+> 1. 
 >       - {Cadastrar} SceneCadastroFisioterapeuta {Vai para SceneLoginPaciente}
-> 4. {Login} SceneLoginPaciente {Login | Cadastras}
-> 5. 
+> 1. {Login} SceneLoginPaciente {Login | Cadastras}
+> 1. 
 >       - {Cadastrar} SceneCadastroPaciente {Vai para sceneColetaDadosFisicos}
 >       - {Login} SceneColetaDadosFisicos {Sim | Não}
 > 1. SceneProximaAcao { Acessar Histórico de Seções | Nova partida }
@@ -21,8 +23,14 @@
 >
 
 > ## Cores
->> Azul: #2E5889
->>
+>> Azul escuro (Padrão das cenas)   : #2E5889<br>
+>> Azul variação (Itens secundário) : #277DA1<br>
+>> Azul claro (Fundo dos painéis)   : #E9F1FF<br>
+>> Branco (Fundo das cenas)         : #FFFFFF<br>
+>> Vermelho (Botões de negação)     : #960200<br>
+>> Verde    (Botões de afirmação)   : #70B77E<br>
+>> Laranja (Instruções)             : #FA690F<br>
+
 > ## Titulos
 >> W: **685**; H: **70**;<br>
 >> X: **0**;   Y: **157.5**;<br>
@@ -63,7 +71,7 @@
 >> Font Size: **17**<br><br>
 >> Dica: Se vc muda o texto da label para ser exebido por exemplo "Selecione seu nome", mas ele fica apagando a label e voltando pro default, é pq não existe opção no dropdown com esse texto: coloque "Selecione seu nome" na primeira opção do dropdown<br><br>
 > ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/optionDropdown.png)<br>
->> Dica: Se os itens do seu dropdown não estiverem sendo gerados mas não estiver aparecendo, verifica o tamanho do altura do item, se a font do text estiver maior, o item não cabe lá<br><br>
+>> Dica: Se os itens do seu dropdown estiverem sendo gerados mas não estiver aparecendo, verifica o tamanho do altura do item, se a font do text estiver maior, o item não cabe lá<br><br>
 > ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/alturadositensdoDropdown.png)
 > ## h3
 >> W: - ; H: 40;<br>

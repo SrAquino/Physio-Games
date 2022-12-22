@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/_Scenes/Jogos/GalaxyShooter/Jogo2_GalaxyShooter.unity
+- path: Assets/_Scenes/Jogos/Tennis/sceneJogo.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

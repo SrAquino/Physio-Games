@@ -51,14 +51,17 @@ public class Player : MonoBehaviour
         if(configCalibragem.porta.IsOpen){
             try{
                  if(configCalibragem.porta.BytesToRead == 0){ //Não está sendo recebido dados no buffer
-                     //Debug.Log(porta.BytesToRead);
-                    //   Debug.Log("Sem recebimento de dados B!");
+                    //Debug.Log(porta.BytesToRead);
+                    //Debug.Log("Sem recebimento de dados B!");
                  }else{
                     //Trecho comentado que funciona apenas quando enviado APENAS UM BYTE
                     // int dadoNoSensor = configCalibragem.porta.ReadByte();
                     // configCalibragem.porta.DiscardInBuffer();
                     // configCalibragem.porta.Write("2");
                     //Trecho de código para coletar o que é recebido pela Unity quando é solicitado valores de movimento
+                    
+                    Debug.Log("Recebimento de dados B!");
+
                     string dadoNoSensor = configCalibragem.porta.ReadTo("\n");
                     configCalibragem.porta.DiscardInBuffer();
 
