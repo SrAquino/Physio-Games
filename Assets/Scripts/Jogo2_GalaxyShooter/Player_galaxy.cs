@@ -8,7 +8,7 @@ using System.Globalization;
 public class Player_galaxy : MonoBehaviour{
     //public Transform aimTarget; //alvo para onde a bolinha será lançada para o lado do bot
     
-    float speed = 15f;      //velocidade de movimentação do player
+    float speed = 2f;      //velocidade de movimentação do player
 
     public float fireRate = 0.7f;
     public float canFire = 0.0f;
@@ -17,7 +17,7 @@ public class Player_galaxy : MonoBehaviour{
     public bool powerSpeed = false;
     public bool powerShield = false;
 
-    private int Life = 1;
+    private int Life = 10;
 
     [SerializeField]// Variavel privada mas pode ser modificada no unity
     private GameObject NormalLaser;
@@ -58,8 +58,8 @@ public class Player_galaxy : MonoBehaviour{
     void Update()
     {
         //Movimentação
-        movimentaUsandoTeclado();   //Para desenvolvimento inicial e testes
-        //movimentaUsandoCelular();   
+        //movimentaUsandoTeclado();   //Para desenvolvimento inicial e testes
+        movimentaUsandoCelular();   
 
         //Tiros
         Shooting();
@@ -80,7 +80,7 @@ public class Player_galaxy : MonoBehaviour{
                     //configCalibragem.porta.DiscardInBuffer();
                     //configCalibragem.porta.Write("2");
 
-                    Debug.Log("Recebimento de dados B!");
+                    //Debug.Log("Recebimento de dados B!");
 
                     //Trecho de código para coletar o que é recebido pela Unity quando é solicitado valores de movimento
                     string dadoNoSensor = configCalibragem.porta.ReadTo("\n");
@@ -113,7 +113,7 @@ public class Player_galaxy : MonoBehaviour{
                         
                         //moveAvatar(direcao, posicao);
 
-                        float z = transform.position.z;
+                        float x = transform.position.x;
                         //Debug.Log("Posição atual do avatar em z é igual a: " + z);
                         
                         if(deslocamentoAnterior == posicao){
@@ -122,12 +122,12 @@ public class Player_galaxy : MonoBehaviour{
 
                             float deslocamento = 0.0f;
 
-                            if(z == 0 || (z > -1 && z < 1)){
-                                deslocamento = z + posicao;
-                            }else if(posicao > z){
-                                deslocamento = posicao - z;
-                            }else if(z > posicao){
-                                deslocamento = z - posicao;
+                            if(x == 0 || (x > -1 && x < 1)){
+                                deslocamento = x + posicao;
+                            }else if(posicao > x){
+                                deslocamento = posicao - x;
+                            }else if(x > posicao){
+                                deslocamento = x - posicao;
                             }
                             
                             deslocamentoAnterior = deslocamento;
@@ -139,22 +139,22 @@ public class Player_galaxy : MonoBehaviour{
                                 deslocamento = deslocamento * (-1.0f);
                             }
 
-                            float andandoMesa = 0.0f;
+                            float VoandoEspaco = 0.0f;
 
                             if(direcao == "D"){
-                                while(andandoMesa < deslocamento && transform.position.z <= 8f){ 
+                                while(VoandoEspaco < deslocamento && transform.position.x <= 8f){ 
                                     // Debug.Log(1 * speed * Time.deltaTime);
-                                    transform.position += new Vector3(0, 0, 1 * speed * Time.deltaTime);
-                                    andandoMesa += (1 * speed * Time.deltaTime);
+                                    transform.position += new Vector3(1 * speed * Time.deltaTime, 0, 0 );
+                                    VoandoEspaco += (1 * speed * Time.deltaTime);
                                     if (transform.position.x > 7.5f){
                                         transform.position = new Vector3(7.5f, transform.position.y, 0);
                                     } 
                                 }
                             }else if(direcao == "E"){
-                                while(andandoMesa < deslocamento && transform.position.z >= (-8f)){
+                                while(VoandoEspaco < deslocamento && transform.position.x >= (-8f)){
                                     // Debug.Log(-1 * speed * Time.deltaTime);
-                                    transform.position += new Vector3(0, 0, -1 * speed * Time.deltaTime);
-                                    andandoMesa += (1 * speed * Time.deltaTime);
+                                    transform.position += new Vector3(-1 * speed * Time.deltaTime, 0, 0);
+                                    VoandoEspaco += (1 * speed * Time.deltaTime);
                                     if (transform.position.x < -7.5f) {
                                         transform.position = new Vector3(-7.5f, transform.position.y, 0);
                                     } 
@@ -191,7 +191,7 @@ public class Player_galaxy : MonoBehaviour{
 
     }
 
-        private void Shooting(){
+    private void Shooting(){
         if(Time.time > canFire){
 
             if (powerShoot){
@@ -247,6 +247,7 @@ public class Player_galaxy : MonoBehaviour{
             break;
         }
     }
+    
     IEnumerator PowerDownRotine(string power){
         yield return new WaitForSeconds(5.0f);
 

@@ -7,7 +7,9 @@
 > Dica: Não esqueça de dar APLY após mudar coisas nos prefabs, se não ele não salva as alterações que vc fez<br><br>
 > Lembrete: NADA QUE É FEITO DURANTE A EXECUÇÃO DO JOGO É SALVO, nunca se esqueça de pausar a execução antes de começar a arrumar algo na cena, pode ser realmente frustrante perder tudo que vc arrumou só pq o jogo ta rodando!<br><br> 
 > Bom Saber: Caso o objeto esteja invisivel, e aparece ao decorrer da cena: dentro de algum script deve ter um setActive(true/false)
-> ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/setActive.png)
+> ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/setActive.png)<br><br>
+> Dica: Caso não esteja encontrando onde tal variavel é alterada, ela provavelmente está sendo alterada em outro script, e você pode usar a lupa do vscode para pesquisar por acessos a ela, por exemplo: tem uma variável start no script ControllGame.cs, você pesquisa por "ControllGame.start", e o vscode vai retornar todos os scriptis que estão acessando essa variável, no caso: progressSlider.<br>
+> ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/acharacessodevariavel.png)<br><br>
 
 > ## Ordem das cenas
 > 1. _Inicial 

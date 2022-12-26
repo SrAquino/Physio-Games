@@ -43,6 +43,7 @@ public class configPartida : MonoBehaviour
         string tempoLeitura = inputTempo.GetComponent<Text>().text;
         tempo = int.Parse(tempoLeitura);
         controllGame.modalidadeJogo = 1;
+        Debug.Log("Modalidade setada em tempo = 1");
         carregaCena();
     }
 

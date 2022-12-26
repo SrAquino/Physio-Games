@@ -20,11 +20,13 @@ public class controllGame : MonoBehaviour
     void Update()
     {
         //Configuração dos modos de jogo
+        Debug.Log("CONFIGURAÇÃO DOS MODOS DE JOGO");
         if(startGame == 1){
+            Debug.Log("GAME STARTED");
             tempoTotalPartida += Time.deltaTime;
             switch(modalidadeJogo){
                 case 1: //tempo
-                    // Debug.Log("Tempo");
+                    Debug.Log("Jogo por TEMPO! : " + configPartida_jogo2.tempo);
                     tempoPartida = configPartida.tempo; //lê tempo necessario
                     tempoPartida = tempoPartida * 60; //converte tempo em segundos
                     tempoDecorrido += Time.deltaTime; 

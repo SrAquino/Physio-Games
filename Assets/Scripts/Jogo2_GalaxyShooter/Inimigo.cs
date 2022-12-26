@@ -12,7 +12,6 @@ public class Inimigo : MonoBehaviour
     void Start()
     {
         Debug.Log("Enemy: MUAHAHAHA I will kill you " + name);
-        transform.position = new Vector3(-8,7,0);
     }
 
     // Update is called once per frame
@@ -20,8 +19,8 @@ public class Inimigo : MonoBehaviour
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
-        if(transform.position.y < -7){
-            transform.position = new Vector3(Random.Range(-7,7),7,0);
+        if(transform.position.y < -7){//Volta o mesmo objeto pro topo caso não seja destruido pelo player
+            transform.position = new Vector3(Random.Range(-7,7),5.5f,0);
         }
     }
 
