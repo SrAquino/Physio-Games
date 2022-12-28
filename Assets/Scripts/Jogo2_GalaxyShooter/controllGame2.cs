@@ -20,13 +20,20 @@ public class controllGame2 : MonoBehaviour
     
     //variavel que realiza o calculo da partida durante a execução da configuração de partida por tempo
     public static float tempoDecorrido;
+    
+    //Guarda as imagens das vidas
+    public Sprite[] Vida;
+    public Image VidaExibida;
+
+    public int score;
+    public Text scoreText;
 
     void Update()
     {
         //Configuração dos modos de jogo
         //Debug.Log("CONFIGURAÇÃO DOS MODOS DE JOGO");
         if(startGame == 1){
-            Debug.Log("GAME STARTED");
+            //Debug.Log("GAME STARTED");
             tempoTotalPartida += Time.deltaTime;
             //Debug.Log("tempoPartida: " + tempoPartida);
             switch(modalidadeJogo){
@@ -37,49 +44,32 @@ public class controllGame2 : MonoBehaviour
                     tempoDecorrido += Time.deltaTime; 
                     Player_galaxy.flagDificuldade = false;  //config. partida para ser fácil
 
-                    if(tempoDecorrido >= tempoPartida){
+                    if(tempoDecorrido >= tempoPartida || Player_galaxy.Life == 0){
                         UnityEngine.SceneManagement.SceneManager.LoadScene("sceneFimPartida");
                     }
                 break;
                 
-                /*case 2: //fácil 
-                    //A velocidade do bot é 9.5f, força exercida é 10f e o num. de acertos é 5 acertos(bot ou paciente)
-                    Player_galaxy.flagDificuldade = false;
-                    Bot.flagDificuldade = false;
-                    Bot.speed = 8f;
-                    Bot.force = 12f;
-                    if(Ball.playerScore == 5 || Ball.botScore == 5){
-                        // Time.timeScale = 0;
-                        // comunicBluetooth.porta.Close();
-                        UnityEngine.SceneManagement.SceneManager.LoadScene("sceneFimPartida");
-                    }
+                /*
+                case 2: //fácil 
+                    
                 break;
                 case 3: //médio
-                    //A velocidade do bot é 12.5f, força exercida é 12f e o num. de acertos é 7 acertos(bot ou paciente)
-                    Player_galaxy.flagDificuldade = true;
-                    Bot.flagDificuldade = true;
-                    Bot.speed = 12.5f;
-                    Bot.force = 12f;
-                    if(Ball.playerScore == 8 || Ball.botScore == 8){
-                        // Time.timeScale = 0;
-                        // comunicBluetooth.porta.Close();
-                        UnityEngine.SceneManagement.SceneManager.LoadScene("sceneFimPartida");
-                    }
+                   
                 break;
                 case 4: //difícil
-                    //A velocidade do bot é 25f, força exercida é 15f e o num. de acertos é 13 acertos(bot ou paciente)
-                    //10 acertos
-                    Player_galaxy.flagDificuldade = true;
-                    Bot.flagDificuldade = true;
-                    Bot.speed = 25f;
-                    Bot.force = 15f;
-                    if(Ball.playerScore == 13 || Ball.botScore == 13){
-                        // Time.timeScale = 0;
-                        // comunicBluetooth.porta.Close();
-                        UnityEngine.SceneManagement.SceneManager.LoadScene("sceneFimPartida");
-                    }
+                   
                 break;*/
             }
         }
+    }
+
+    //Muda a imagem da quantdade de vida do player
+    public void atualizaVida(int vidaAtual){
+        VidaExibida.sprite = Vida[vidaAtual];
+    }
+
+    public void atualizaPlacar(){
+        score += 100;
+        scoreText.text = "Pontuação: "+score;
     } 
 }
