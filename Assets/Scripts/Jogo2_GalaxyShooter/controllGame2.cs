@@ -71,5 +71,14 @@ public class controllGame2 : MonoBehaviour
     public void atualizaPlacar(){
         score += 100;
         scoreText.text = "Pontuação: "+score;
+
+        if(modalidadeJogo == 1){
+            Inimigo.speed += 0.1f;                          //Aumenta a velocidade dos inimigos a cada ponto
+            GerenciadodeSpawns.tempoNovoInimigo += 0.2f;    //Aumenta a quantidade de inimigos
+            GerenciadodeSpawns.tempoNovoPower -= 0.1f;      //Diminui a frequencia de powerup
+            Player_galaxy.fireRate += 0.1f;                 //Os tiros demoram mais
+
+            Debug.Log("Velocidade do inimigo: " + Inimigo.speed); 
+        }
     } 
 }

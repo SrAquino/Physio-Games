@@ -10,7 +10,8 @@ public class Inimigo : MonoBehaviour
 
     private controllGame2 _gerenciadordeinterface;
 
-    private float speed = 3.0f;
+    public static float speed = 5.0f;
+
     void Start()
     {
         //Debug.Log("Enemy: MUAHAHAHA I will kill you " + name);

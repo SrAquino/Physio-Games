@@ -8,9 +8,9 @@ using System.Globalization;
 public class Player_galaxy : MonoBehaviour{
     //public Transform aimTarget; //alvo para onde a bolinha será lançada para o lado do bot
     
-    float speed = 5.0f;      //velocidade de movimentação do player
+    float speed = 7.0f;      //velocidade de movimentação do player
 
-    public float fireRate = 0.7f;
+    public static float fireRate = 0.7f;
     public float canFire = 0.0f;
 
     public bool powerShoot = false;
@@ -42,7 +42,7 @@ public class Player_galaxy : MonoBehaviour{
         
         _gerenciadordeinterface = GameObject.Find("controllGame").GetComponent<controllGame2>();
         if(_gerenciadordeinterface != null){
-            _gerenciadordeinterface.atualizaVida(0);
+            _gerenciadordeinterface.atualizaVida(3);
         }
     }
 

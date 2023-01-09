@@ -35,16 +35,6 @@ public class configCalibragem : MonoBehaviour
 
     void Start()
     {
-        string [] portasDisponiveis = SerialPort.GetPortNames(); //coleta porta serial disponivel
-        Debug.Log(portasDisponiveis[1]); //seleciona a primeira que é a que está conectado c/ comun serial c/ arduino
-        //Cria porta e abre 
-        //porta = new SerialPort("/dev/ttyACM1", 115200);
-        porta = new SerialPort(portasDisponiveis[1], 115200);
-        Debug.Log("Abrir porta..");
-        porta.Open();
-        Debug.Log("Porta aberta!");
-
-
         porta.ReadTimeout = -1; //InfiniteTimeout = -1
         posicaoCalibragem = -1; //inicializa flag para detectar extremo de calibragem
     }

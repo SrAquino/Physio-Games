@@ -10,6 +10,10 @@
 > ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/setActive.png)<br><br>
 > Dica: Caso não esteja encontrando onde tal variavel é alterada, ela provavelmente está sendo alterada em outro script, e você pode usar a lupa do vscode para pesquisar por acessos a ela, por exemplo: tem uma variável start no script ControllGame.cs, você pesquisa por "ControllGame.start", e o vscode vai retornar todos os scriptis que estão acessando essa variável, no caso: progressSlider.<br>
 > ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/acharacessodevariavel.png)<br><br>
+> Erro identificado: Como o projeto se iniciou no linux, e eu continuei pelo windows, ele tem um problema na identificação correta da porta para comunicação do arduino com a Unity, no linux é na [0] e no windows é na [1]<br>
+> ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/portaProblema.png)<br><br>
+> Dica: Não esquecer que application.quit é apenas para fechar a aplicação compilada, quando tiver nos testes da unity tem que colocar o isPlaying = false: <br>
+> ![Imagem de exemplo de onde foi usado cada formatação!](/imgs_Notation/isplaying.png)<br><br>
 
 > ## Ordem das cenas
 > 1. _Inicial 

@@ -15,22 +15,6 @@ public class listaFisioterapeutas : MonoBehaviour
     {
         dadosJogo.Leitura();
         var dropdown = transform.GetComponent<Dropdown>();
-
-        // dropdown.options.Clear();
-
-        // List<string> items = new List<string>();
-        // items.Add("Selecione o seu nome");
-        // items.Add("Item 1");
-        // items.Add("Item 2");
-        // items.Add("Item 3");
-        // items.Add("Item 4");
-        // items.Add("Item 5");
-        // items.Add("Item 6");
-        // items.Add("Item 7");
-        // items.Add("Item 8");
-        // items.Add("Item 9");
-        // items.Add("Item 10");
-        // items.Add("Item 11");
         
         (dadosJogo.fisioterapeutas).Sort();
 
